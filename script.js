@@ -39,6 +39,21 @@ if(navigator.geolocation){  //if exist
           .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
           .openPopup();
 
+        map.on('click', function(mapEvent){
+            // console.log(mapEvent);
+            const {lat,lng}=mapEvent.latlng;
+            
+            L.marker([lat,lng])
+              .addTo(map)
+              .bindPopup(L.popup({  //customized popup window with the help of library docs
+                maxWidth:250,
+                minWidth:100,
+                autoClose:false,
+                closeOnClick:false,
+                className:'running-popup'
+              })).setPopupContent('workout')
+              .openPopup();
+        })
       },
 
       function () {
